@@ -1,6 +1,15 @@
 //listner for when the dom is ready and the call etch
 document.addEventListener('DOMContentLoaded', etch);
 
+/*
+    0:
+    split code into functions
+
+    1:
+    remove inline styles to a separate style sheets
+    and add class/ids with js instead
+ */
+
 //main function of the program
 function etch(){
     // create 16x16 grid of square divs
@@ -16,14 +25,20 @@ function etch(){
         //style the square
         gridSquare.style.border = 'solid black 1px';
 
-        gridSquare.style.backgroundColor = 'blue';
+        gridSquare.style.backgroundColor = 'white';
 
         //needed to add content to get the square to "behave"
         gridSquare.textContent = `${i}`;
 
         // hiding the content by setting it's color the same
         // as the background
-        gridSquare.style.color = 'blue';
+        gridSquare.style.color = 'white';
+
+        //grid squares changes color when mouse passes over
+        gridSquare.addEventListener("mouseenter", () => {
+            gridSquare.style.backgroundColor = 'grey';
+            gridSquare.style.color = 'grey';
+        });
 
         // add sqaure to the grid
         grid.appendChild(gridSquare);
