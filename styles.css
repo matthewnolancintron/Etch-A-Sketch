@@ -1,0 +1,32 @@
+:root{
+    --grid-width: 700px;
+    --grid-height: 300px;
+}
+
+
+.grid{
+    border: solid green 2px;
+    display: grid;
+    width: var(--grid-width);
+    height: var(--grid-height);
+    
+}
+
+.gridSquare{
+    border:solid black 0.1em;
+    background-color: white;
+    color : white;
+    width: calc(1/var(--grid-width));
+    height: calc(1/var(--grid-height));
+    overflow: hidden;
+}
+
+.fillInSquare{
+    color: gray;
+    background-color: gray;
+}
+
+.createNewGridButton{
+    background-color: hotpink;
+    margin-bottom: 2%;
+}
