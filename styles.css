@@ -26,6 +26,45 @@
     background-color: gray;
 }
 
+.firstOverPass{
+    filter:brightness(90%)
+}
+
+.secondOverPass{
+    filter:brightness(80%);
+}
+
+.thirdOverPass{
+    filter:brightness(70%);
+}
+
+.fourthOverPass{
+    filter:brightness(60%);
+}
+
+.fifthOverPass{
+    filter:brightness(50%);
+}
+
+.sixthOverPass{
+    filter:brightness(40%);
+}
+.seventhOverPass{
+    filter:brightness(30%);
+}
+
+.eightOverPass{
+    filter:brightness(20%);
+}
+
+.ninthOverPass{
+    filter:brightness(10%);
+}
+
+.tenthOverPass{
+    filter:brightness(0%);
+}
+
 .createNewGridButton{
     background-color: hotpink;
     margin-bottom: 2%;

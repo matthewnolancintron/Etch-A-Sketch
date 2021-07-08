@@ -44,11 +44,75 @@ function makeGrid(numSquaresPerSide) {
 
         //needed to add content to get the square to "behave"
         gridSquare.textContent = `${i}`;
+        
+        //
+        let numPasses = 0;
 
         //grid squares changes color when mouse passes over
         gridSquare.addEventListener("mouseenter", () => {
-            //
+            numPasses += 1;
             gridSquare.classList.add('fillInSquare');
+            console.log(numPasses);
+            
+            // extra
+            /*
+                each pass with mouse over the square changes it to
+                completely random rgb value so each square is a random
+                color
+                try having each pass just add another 10% black
+                so that after 10 passes the square is completely black
+            */
+           /*
+            each square would get it's own local varible to "remember"
+            how many passes have occurred
+
+            then just set up a switch to add a class depending on the
+            value of numPasses
+            */
+           switch (numPasses) {
+               case 2:
+                   gridSquare.classList.add('firstOverPass');
+               break;
+
+               case 3:
+                   gridSquare.classList.replace('firstOverPass','secondOverPass');
+               break;
+
+               case 4:
+                   gridSquare.classList.replace('secondOverPass','thirdOverPass');
+               break;
+
+               case 5:
+                   gridSquare.classList.replace('thirdOverPass', 'fourthOverPass');
+                   break;
+                
+               case 6:
+                   gridSquare.classList.replace('fourthOverPass', 'fifthOverPass');
+                   break;
+                
+                case 7:
+                    gridSquare.classList.replace('fifthOverPass','sixthOverPass');
+                    break;
+                
+                case 8:
+                    gridSquare.classList.replace('sixthOverPass', 'seventhOverPass');
+                    break;
+                
+                case 9:
+                    gridSquare.classList.replace('seventhOverPass', 'eightOverPass');
+                    break;
+                
+                case 10:
+                    gridSquare.classList.replace('eightOverPass', 'ninthOverPass');
+                    break;
+                
+                case 11:
+                    gridSquare.classList.replace('ninthOverPass', 'tenthOverPass');
+                    break;
+
+           }
+
+
         });
 
         // add sqaure to the grid
@@ -101,13 +165,3 @@ function createNewGrid() {
         }
     }
 }
-
-// extra
-    /*
-       each pass with mouse over the square changes it to
-       completely random rgb value so each square is a random
-       color
-
-       try having each pass just add another 10% black
-       so that after 10 passes the square is completely black
-     */
