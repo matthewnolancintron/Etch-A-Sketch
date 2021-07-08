@@ -47,29 +47,20 @@ function makeGrid(numSquaresPerSide) {
         
         //
         let numPasses = 0;
-
+        let randomHue;
         //grid squares changes color when mouse passes over
         gridSquare.addEventListener("mouseenter", () => {
             numPasses += 1;
             gridSquare.classList.add('fillInSquare');
             console.log(numPasses);
-            
-            // extra
-            /*
-                each pass with mouse over the square changes it to
-                completely random rgb value so each square is a random
-                color
-                try having each pass just add another 10% black
-                so that after 10 passes the square is completely black
-            */
-           /*
-            each square would get it's own local varible to "remember"
-            how many passes have occurred
 
-            then just set up a switch to add a class depending on the
-            value of numPasses
-            */
            switch (numPasses) {
+               case 1:
+                   randomHue = Math.floor(Math.random() * (300 - 0));
+                   gridSquare.style.backgroundColor = `hsl(${randomHue},100%,50%)`;
+                   gridSquare.style.color = `hsl(${randomHue},100%,50%)`;
+
+                   break;
                case 2:
                    gridSquare.classList.add('firstOverPass');
                break;

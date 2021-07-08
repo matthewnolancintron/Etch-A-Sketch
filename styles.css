@@ -3,7 +3,6 @@
     --grid-height: 300px;
 }
 
-
 .grid{
     border: solid green 2px;
     display: grid;
@@ -49,6 +48,7 @@
 .sixthOverPass{
     filter:brightness(40%);
 }
+
 .seventhOverPass{
     filter:brightness(30%);
 }
