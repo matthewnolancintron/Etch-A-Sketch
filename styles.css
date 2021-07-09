@@ -3,11 +3,104 @@
     --grid-height: 300px;
 }
 
+body{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+
+
+ /*
+  * css art property tool kit
+    1 height,width
+    2 background-color
+    3 border-radius
+    4 transform: translateY/translateX
+
+
+    to layer sections --> z-index
+    to add details --> :before/:after and pseudo-elements
+  */
+
+  .createNewGridButton{
+    background-color:chartreuse;
+    color:rgb(65, 0, 0);
+    margin-bottom: 2%;
+    width: 50%;
+}
+
+/*
+
+*/
+
+.case{
+    background-color: crimson;
+    width: max-content;
+    
+    /*
+        adjust when knobs gets added
+    */
+    /*center screen inside case*/
+    display: grid;
+    place-items: center;    
+    
+    /*adjusting shape of the case*/
+    height: 400px;
+    padding:20px;
+
+    /*rounding*/
+    border-radius: 16px;
+
+    
+}
+
+/*
+    make knobs look 3d and 8bit-ish
+
+    use css gradients to draw the details on the knobs
+    to draw on the ridges of the knobs
+
+    follow this guide to get started
+    https://css-tricks.com/drawing-images-with-css-gradients/
+
+    and this:
+    https://css-tricks.com/css3-gradients/
+
+
+*/
+
+.knobContainer{
+   display: grid;
+   width: var(--grid-width);
+   grid-template-columns:  1fr 1fr;
+}
+
+.knob{
+    width:64px;
+    height:64px;
+    margin-top: 30px;
+    border-radius: 32%;
+    background-color:floralwhite;
+    border: solid black 1px;
+}
+
+
+.leftKnob{
+    
+}
+
+.rightKnob{
+    justify-self: end;
+}
+
 .grid{
     border: solid green 2px;
-    display: grid;
+    display: inline-grid;
     width: var(--grid-width);
     height: var(--grid-height);
+    
+    box-shadow: darkred 0px 7px 3px;
     
 }
 
@@ -18,11 +111,6 @@
     width: calc(1/var(--grid-width));
     height: calc(1/var(--grid-height));
     overflow: hidden;
-}
-
-.fillInSquare{
-    color: gray;
-    background-color: gray;
 }
 
 .firstOverPass{
@@ -63,9 +151,4 @@
 
 .tenthOverPass{
     filter:brightness(0%);
-}
-
-.createNewGridButton{
-    background-color: hotpink;
-    margin-bottom: 2%;
 }

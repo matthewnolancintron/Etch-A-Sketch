@@ -1,4 +1,7 @@
-// 
+let housing;
+let rightKnob;
+let leftKnob;
+
 let grid;
 
 //listen for when the dom is ready and then call etch
@@ -6,6 +9,13 @@ document.addEventListener('DOMContentLoaded', etch);
 
 //main function of the program
 function etch() {
+    // create housing
+    housing = makeHousing();
+
+    //create knobs
+    rightKnob = makeKnob('right');
+    leftKnob = makeKnob('left');
+
     // create 16x16 grid of square divs
     grid = makeGrid(16);
 
@@ -27,7 +37,44 @@ function etch() {
 
 
     //add button to the page
-    document.body.insertBefore(createNewGridButton, grid);
+    document.body.insertBefore(createNewGridButton, housing);
+
+    //add knobs to container for styling
+    //then add container holding the knobs to the housing
+    let knobContainer = document.createElement('div');
+    knobContainer.classList.add('knobContainer')
+
+    knobContainer.appendChild(leftKnob);
+    knobContainer.appendChild(rightKnob);
+
+    housing.appendChild(knobContainer);
+}
+
+function makeHousing() {
+    let housing = document.createElement('div');
+    housing.classList.add('case');
+    document.body.appendChild(housing);
+    return housing
+
+}
+
+function makeKnob(direction) {
+    console.log(`${direction}`);
+    
+    let knob = document.createElement('div');
+    knob.classList.add('knob');
+
+    if(direction == 'left'){
+        //
+        knob.classList.add('leftKnob');
+    }
+
+    if(direction == 'right'){
+        //
+        knob.classList.add('rightKnob');
+    }
+
+    return knob;
 }
 
 function makeGrid(numSquaresPerSide) {
@@ -41,18 +88,14 @@ function makeGrid(numSquaresPerSide) {
 
         //
         gridSquare.classList.add('gridSquare');
-
-        //needed to add content to get the square to "behave"
-        gridSquare.textContent = `${i}`;
         
         //
         let numPasses = 0;
         let randomHue;
         //grid squares changes color when mouse passes over
         gridSquare.addEventListener("mouseenter", () => {
+            //keeps track of the number of times user passed of "this" square
             numPasses += 1;
-            gridSquare.classList.add('fillInSquare');
-            console.log(numPasses);
 
            switch (numPasses) {
                case 1:
@@ -116,15 +159,35 @@ function makeGrid(numSquaresPerSide) {
     grid.style.gridTemplateColumns = `repeat(${numSquaresPerSide},1fr)`;
     grid.style.gridTemplateRows = `repeat(${numSquaresPerSide},1fr)`;
 
+
+    /*
+    animate knobs based on the mouse x and mouse y when it's on the grid/display
+    when user mouse moves in the x direction knob on the left or righ should roate
+    simulating a real etch-a-sketch
+    update grid class to display and update js to match
+    */
+    grid.addEventListener('mouseover', (event) => {
+        console.log(`clientX: ${event.clientX%360}`);
+       // console.log(`clientY: ${event.clientY%360}`);
+        leftKnobRotation = event.clientX % 360;
+        rightKnobRotation = event.clientY % 360;
+
+        leftKnob.style.transform = `rotate(${leftKnobRotation/4}deg)`;
+
+        rightKnob.style.transform = `rotate(${rightKnobRotation/2}deg)`;
+        
+    });
+
     // grid to the page
     //if there is a grid already present replace it
-    if (document.body.querySelector('.grid') != null) {
-        document.body.replaceChild(grid, document.body.querySelector('.grid'));
+    if (housing.querySelector('.grid') != null) {
+        housing.replaceChild(grid, housing.querySelector('.grid'));
     } else {
         // if not add a new grid
         // add grid to the body 
-        document.body.appendChild(grid);
+        housing.appendChild(grid);
     }
+
     //
     return grid;
 }
